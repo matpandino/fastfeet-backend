@@ -13,9 +13,8 @@ Instale as dependencias
 
 Realize as migrations
 
-    yarn sequelize migration:create --name=create-recepient
-
     yarn sequelize db:migrate
+    yarn sequelize db:seed:all
 
 Por fim execute 
 
