@@ -1,10 +1,13 @@
+// import * as Yup from 'yup';
 import Recepient from '../models/Recepient';
-import * as Yup from 'yup';
 
 class RecepientController {
-  async store(req, res) {
+  // TODO VALIDATE RECEPIENT SCHEMA WITH YUP
 
-    const recepientExists = await Recepient.findOne({ where: { name: req.body.name } });
+  async store(req, res) {
+    const recepientExists = await Recepient.findOne({
+      where: { name: req.body.name },
+    });
 
     if (recepientExists) {
       return res.status(401).json({ error: 'Recepient already exists' });
@@ -16,13 +19,14 @@ class RecepientController {
       user: {
         id,
         name,
-      }
+      },
     });
   }
 
   async update(req, res) {
-
-    const recepient = await Recepient.findOne({ where: { name: req.body.name } });
+    const recepient = await Recepient.findOne({
+      where: { name: req.body.name },
+    });
 
     if (!recepient) {
       return res.status(401).json({ error: 'Recepient does not exists' });
@@ -32,8 +36,8 @@ class RecepientController {
 
     return res.json({
       user: {
-        recepientResponse
-      }
+        recepientResponse,
+      },
     });
   }
 }

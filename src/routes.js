@@ -2,7 +2,6 @@ import { Router } from 'express';
 
 import SessionController from './app/controllers/SessionController';
 import RecepientController from './app/controllers/RecepientController';
-import UserController from './app/controllers/UserController';
 
 import authMiddleware from './app/middlewares/auth';
 
