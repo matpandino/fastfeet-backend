@@ -4,15 +4,15 @@ import Recepient from '../models/Recepient';
 class RecepientController {
   // TODO VALIDATE RECEPIENT SCHEMA WITH YUP
 
-  async store(req, res) {
-    const recepientExists = await Recepient.findOne({
-      where: { name: req.body.name },
+  async index(req, res) {
+    const recepientResponse = await Recepient.findAll();
+
+    return res.json({
+      recepientResponse,
     });
+  }
 
-    if (recepientExists) {
-      return res.status(401).json({ error: 'Recepient already exists' });
-    }
-
+  async store(req, res) {
     const { id, name } = await Recepient.create(req.body);
 
     return res.json({
@@ -24,9 +24,7 @@ class RecepientController {
   }
 
   async update(req, res) {
-    const recepient = await Recepient.findOne({
-      where: { name: req.body.name },
-    });
+    const recepient = await Recepient.findByPk(req.params.id);
 
     if (!recepient) {
       return res.status(401).json({ error: 'Recepient does not exists' });
@@ -35,9 +33,7 @@ class RecepientController {
     const recepientResponse = await recepient.update(req.body);
 
     return res.json({
-      user: {
-        recepientResponse,
-      },
+      recepientResponse,
     });
   }
 }
