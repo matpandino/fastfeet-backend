@@ -3,11 +3,11 @@
 </h1>
 
 <h3 align="center">
-  Desafio 2: FastFeet, o início
+  Desafio 3: FastFeet, o início
 </h3>
 
 <h3 align="center">
-  :warning: Etapa 1/4 do Desafio Final :warning:
+  :warning: Etapa 2/4 do Desafio Final :warning:
 </h3>
 
 ## :rocket: Sobre
