@@ -52,11 +52,9 @@ class DeliverymanController {
       return res.status(401).json({ error: 'Deliveryman does not exists' });
     }
 
-    const deliverymanResponse = await deliveryman.delete(req.body);
+    await deliveryman.destroy();
 
-    return res.json({
-      deliverymanResponse,
-    });
+    return res.json({ success: 'Deliveryman deleted successfully' });
   }
 }
 
