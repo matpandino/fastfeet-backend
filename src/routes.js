@@ -4,7 +4,7 @@ import multerConfig from './config/multer';
 
 import FileController from './app/controllers/FileController';
 import SessionController from './app/controllers/SessionController';
-import RecepientController from './app/controllers/RecepientController';
+import RecipientController from './app/controllers/RecipientController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 
 import authMiddleware from './app/middlewares/auth';
@@ -16,9 +16,9 @@ routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);
 
-routes.get('/recepient', RecepientController.index);
-routes.post('/recepient', RecepientController.store);
-routes.put('/recepient/:id', RecepientController.update);
+routes.get('/recipient', RecipientController.index);
+routes.post('/recipient', RecipientController.store);
+routes.put('/recipient/:id', RecipientController.update);
 
 routes.get('/deliverymen', DeliverymanController.index);
 routes.post('/deliveryman', DeliverymanController.store);
