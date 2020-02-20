@@ -1,5 +1,4 @@
 import Sequelize, { Model } from 'sequelize';
-// import { isBefore } from 'date-fns';
 
 class Delivery extends Model {
   static init(sequelize) {
