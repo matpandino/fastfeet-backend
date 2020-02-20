@@ -42,13 +42,14 @@ class DeliverymanController {
 
   async index(req, res) {
     const { page = 1 } = req.query;
+    const { pagelimit = 20 } = req.query;
 
     const deliverymenResponse = await Deliveryman.findAll({
       // where: { deliveryman_id: req.deliverymanId },
       // order: ['date'],
-      limit: 20,
-      offset: (page - 1) * 20,
-      attributes: ['id', 'name', 'email', 'avatar_id'],
+      limit: pagelimit,
+      offset: (page - 1) * pagelimit,
+      attributes: ['id', 'name', 'email'],
       include: [
         { model: File, as: 'avatar', attributes: ['id', 'path', 'url'] },
       ],
