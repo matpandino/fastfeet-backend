@@ -2,20 +2,16 @@ import { startOfDay, endOfDay } from 'date-fns';
 import { Op } from 'sequelize';
 import Delivery from '../models/Delivery';
 
-// import Deliveryman from '../models/Deliveryman';
-// import Recipient from '../models/Recipient';
-// import File from '../models/File';
-
-class DeliverymanPickupController {
-  async update(req, res) {
-    const delivery = await Delivery.findByPk(req.params.deliveryId);
+class DeliveryPickupController {
+  async store(req, res) {
+    const delivery = await Delivery.findByPk(req.params.id);
 
     const pickups = await Delivery.findAll({
       where: {
         start_date: {
           [Op.between]: [startOfDay(new Date()), endOfDay(new Date())],
         },
-        deliveryman_id: req.params.deliveryManId,
+        deliveryman_id: delivery.deliveryman_id,
       },
       attributes: ['id'],
     });
@@ -37,4 +33,4 @@ class DeliverymanPickupController {
   }
 }
 
-export default new DeliverymanPickupController();
+export default new DeliveryPickupController();
