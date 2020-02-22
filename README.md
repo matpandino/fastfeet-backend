@@ -29,17 +29,23 @@ TODO
 - Express
 - Sucrase + Nodemon;
 - ESLint + Prettier + EditorConfig;
-- Sequelize (com PostegreSQL ou MySQL);
+- Sequelize (PostegreSQL);
+- BeeQueue
 
-### **1. Criando o Banco de Dados**
+### **1. Criar o Bancos de Dados**
 
 <p>Criar banco de dados PostegreSQL ou MySQL</p>
+<p>Criar Redis</p>
+
+### **2. Configurar .env**
+
+<p>Configure o .env de acordo com o .env.example
 
 ### Rodando a aplicação
 
 Instale as dependencias 
 
-    yarn add
+    yarn 
 
 Realize as migrations
 
