@@ -41,6 +41,11 @@ TODO
 
 <p>Configure o .env de acordo com o .env.example
 
+### **3. Configurar Insomnia**
+
+<p>Importe os dados no arquivo <b>Insomnia_*.json</b> para importar as rotas para o Insomnia</p>
+
+
 ### Rodando a aplicação
 
 Instale as dependencias 
