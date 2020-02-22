@@ -43,7 +43,7 @@ TODO
 
 ### **3. Configurar Insomnia**
 
-<p>Importe os dados no arquivo <b>Insomnia_*.json</b> para importar as rotas para o Insomnia</p>
+<p>Importe os dados do arquivo <b>Insomnia_*.json</b> para obter as rotas já configuradas no Insomnia</p>
 
 
 ### Rodando a aplicação
