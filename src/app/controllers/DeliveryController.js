@@ -4,6 +4,9 @@ import Deliveryman from '../models/Deliveryman';
 import Recipient from '../models/Recipient';
 import File from '../models/File';
 
+import PickupReadyMail from '../jobs/PickupReadyMail';
+import Queue from '../../lib/Queue';
+
 class DeliveryController {
   async store(req, res) {
     const deliveryman = await Deliveryman.findByPk(req.body.deliveryman_id);
@@ -19,6 +22,13 @@ class DeliveryController {
     }
 
     const delivery = await Delivery.create(req.body);
+
+    await Queue.add(PickupReadyMail.key, {
+      delivery,
+      deliveryman,
+      recipient,
+    });
+
     return res.json({ delivery });
   }
 
@@ -51,8 +61,6 @@ class DeliveryController {
     const { pagelimit = 20 } = req.query;
 
     const deliveries = await Delivery.findAll({
-      // where: { deliveryman_id: req.deliverymanId },
-      // order: ['date'],
       limit: pagelimit,
       offset: (page - 1) * pagelimit,
       attributes: [

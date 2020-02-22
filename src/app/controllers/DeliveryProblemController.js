@@ -1,6 +1,11 @@
 import _ from 'lodash';
 import Delivery from '../models/Delivery';
+import Recipient from '../models/Recipient';
+import Deliveryman from '../models/Deliveryman';
 import DeliveryProblem from '../models/DeliveryProblem';
+
+import CancellationMail from '../jobs/CancellationMail';
+import Queue from '../../lib/Queue';
 
 class DeliveryProblemController {
   async store(req, res) {
@@ -40,7 +45,12 @@ class DeliveryProblemController {
   }
 
   async delete(req, res) {
-    const delivery = await Delivery.findByPk(req.params.id);
+    const delivery = await Delivery.findByPk(req.params.id, {
+      include: [
+        { model: Deliveryman, as: 'deliveryman' },
+        { model: Recipient, as: 'recipient' },
+      ],
+    });
 
     if (!delivery) {
       return res.status(400).json({ error: 'Delivery not found' });
@@ -51,7 +61,11 @@ class DeliveryProblemController {
       end_date: null,
     });
 
-    return res.json();
+    await Queue.add(CancellationMail.key, {
+      delivery,
+    });
+
+    return res.json(delivery);
   }
 }
 

@@ -6,6 +6,10 @@ class DeliveryPickupController {
   async store(req, res) {
     const delivery = await Delivery.findByPk(req.params.id);
 
+    if (!delivery) {
+      return res.status(401).json({ error: 'Delivery does not exists' });
+    }
+
     const pickups = await Delivery.findAll({
       where: {
         start_date: {
